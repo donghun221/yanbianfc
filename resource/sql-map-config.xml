@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD SQL Map Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+
+		<typeAlias type="com.ffyc.site.common.image.ImageInfo" alias="ImageInfo" />
+		<typeAlias type="com.ffyc.site.model.WelcomeInfo" alias="WelcomeInfo" />
+		<typeAlias type="com.ffyc.site.model.IndexInfo" alias="IndexInfo" />
+		<typeAlias type="com.ffyc.site.model.Intro" alias="Intro" />
+		<typeAlias type="com.ffyc.site.model.AdminInfo" alias="AdminInfo" />
+		
+		<typeAlias type="com.ffyc.site.model.LinkInfo" alias="LinkInfo" />
+		<typeAlias type="com.ffyc.site.model.RichArticleInfo" alias="RichArticleInfo" />
+		<typeAlias type="com.ffyc.site.model.RichArticleInfoVO" alias="RichArticleInfoVO" />
+		<typeAlias type="com.ffyc.site.model.FeedBackInfo" alias="FeedBackInfo" />
+		<typeAlias type="com.ffyc.site.model.TeamScore" alias="TeamScore" />
+		<typeAlias type="com.ffyc.site.model.MatchSchedule" alias="MatchSchedule" />
+		
+	</typeAliases>
+
+	<mappers>
+		<mapper resource="com/peernet/mobile/server/admin/mapper/site.xml" />
+	</mappers>
+</configuration>

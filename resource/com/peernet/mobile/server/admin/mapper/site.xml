@@ -1,0 +1,713 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ffyc.site.mapper.SiteMapper">
+
+	<resultMap type="ImageInfo" id="ImageInfo">  
+        <id property="id" column="id"/>  
+        <result property="path" column="path"/>  
+        <result property="fileName" column="file_name"/>  
+        <result property="lastModTime" column="last_mod_time"/>  
+    </resultMap> 
+    
+    <select id="getImageById" resultMap="ImageInfo">
+    	select * from tb_image where id = #{id, jdbcType=NUMERIC}
+    </select> 
+    
+    <insert id="insertImage" parameterType="ImageInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_image(path,file_name,last_mod_time) values(#{path},#{fileName},sysdate())
+    </insert>
+    
+    
+    <resultMap type="IndexInfo" id="IndexInfo"> 
+		<id property="id" column="id"/>
+        <result property="contentText" column="content_text"/>  
+        <result property="copyrightText" column="copyright_text"/>  
+        <result property="addressText" column="address_text"/>
+        <result property="titleText" column="title_text"/>
+        
+        <!-- <association property="logoImg" column="logo_img" select="getImageById" />  
+        <association property="logoImgButtom" column="logo_img_buttom" select="getImageById" />   -->
+    </resultMap>  
+	
+	
+	<select id="getIndexInfo" resultMap="IndexInfo">
+		select * from tb_index
+	</select>
+	
+	<update id="updateIndexInfo">
+		update tb_welcome set
+			content_text = #{contentText, jdbcType=VARCHAR},
+			copyright_text = #{copyrightText, jdbcType=VARCHAR},
+			address_text = #{addressText, jdbcType=VARCHAR},
+			title_text = #{titleText, jdbcType=VARCHAR}<!-- ,
+			logo_img = #{logoImg, jdbcType=NUMERIC},
+			logo_img_buttom = #{logoImgButtom, jdbcType=NUMERIC} -->
+			
+	</update>
+	
+	<resultMap type="LinkInfo" id="LinkInfo">  
+        <id property="id" column="id"/>  
+        <result property="linkName" column="link_name"/>  
+        <result property="linkUrl" column="link_url"/>  
+        <result property="orderNum" column="order_num"/>
+        <association property="linkImg" column="link_img" select="getImageById" />  
+    </resultMap>
+    <select id="getLinkInfoList" resultMap="LinkInfo">
+    	SELECT * FROM  tb_link t
+		ORDER BY t.order_num asc
+		<if test="startRow != null and startRow >= 0 ">
+			limit #{startRow, jdbcType=NUMERIC}, #{count, jdbcType=NUMERIC}
+		</if>
+	</select>
+    <select id="getLinkInfoListCount" resultType="int">
+		select count(*) from tb_link
+	</select>
+	<update id="updateLinkInfo" parameterType="LinkInfo">
+		update tb_link set
+			link_name = #{linkName, jdbcType=VARCHAR},
+			link_url = #{linkUrl, jdbcType=VARCHAR},
+			order_num = #{orderNum, jdbcType=NUMERIC},
+			link_img = #{linkImg.id, jdbcType=NUMERIC}
+		where id = #{id, jdbcType=NUMERIC}
+	</update>
+	<insert id="insertLinkInfo" parameterType="LinkInfo" useGeneratedKeys="true" keyProperty="id">
+		insert into tb_link(link_name,link_url,order_num,link_img)
+		values(
+			#{linkName},
+			#{linkUrl},
+			#{orderNum, jdbcType=NUMERIC},
+			#{linkImg.id}
+		)
+	</insert>
+	<delete id="deleteLinkInfo">
+		delete from tb_link where id = #{id, jdbcType=NUMERIC}
+	</delete>
+	
+	
+	<!-- RichArticle -->
+	
+	<resultMap type="RichArticleInfo" id="RichArticleInfo">  
+        <id property="id" column="id"/>  
+        <result property="articleName" column="article_name"/>  
+        <result property="contentText" column="content_text"/>
+        <result property="articleType" column="article_type"/>
+        <result property="descText" column="desc_text"/>
+        <result property="createDate" column="create_date"/>  
+        <result property="orderNum" column="order_num"/>  
+        <result property="readCount" column="read_count"/>  
+        <result property="isBalad" column="is_balad"/>  
+        <association property="articleImage" column="article_image_id" select="getImageById" />
+    </resultMap>
+    <resultMap type="RichArticleInfoVO" id="RichArticleInfoVO">  
+        <id property="id" column="id"/>  
+        <result property="articleName" column="article_name"/>  
+        <result property="articleType" column="article_type"/>
+        <result property="descText" column="desc_text"/>
+        <result property="createDate" column="create_date"/>  
+        <result property="orderNum" column="order_num"/>  
+        <result property="readCount" column="read_count"/> 
+        <association property="articleImage" column="article_image_id" select="getImageById" />
+    </resultMap>
+	<update id="updateRichArticleInfo" parameterType="RichArticleInfo">
+		update tb_rich_article set
+			article_name = #{articleName},
+			content_text = #{contentText},
+			article_type = #{articleType},
+			desc_text = #{descText},
+			order_num = #{orderNum},
+			is_balad = #{isBalad},
+			article_image_id = #{articleImage.id}
+		where id = #{id, jdbcType=NUMERIC}
+	</update>
+	<insert id="insertRichArticleInfo" parameterType="RichArticleInfo" useGeneratedKeys="true" keyProperty="id">
+		insert into tb_rich_article(article_name,content_text,article_type,desc_text,article_image_id,create_date,order_num,is_balad)
+		values(
+			#{articleName},
+			#{contentText},
+			#{articleType},
+			#{descText},
+			#{articleImage.id},
+			sysdate(),
+			#{orderNum},
+			#{isBalad}
+			
+			
+		)
+	</insert>
+	<delete id="deleteRichArticleInfo">
+		delete from tb_rich_article where id = #{id, jdbcType=NUMERIC}
+	</delete>
+	<select id="getRichArticleInfoList" resultMap="RichArticleInfo">
+    	SELECT * FROM  tb_rich_article t where 1=1
+		<if test="articleType != null and articleType != ''">
+			and t.article_type = #{articleType}
+		</if>
+		
+		<if test="isBalad != null and isBalad != ''">
+    		and t.is_balad = #{isBalad}
+		</if>
+		
+		<if test="orderType == null or orderType == '' or orderType == 'date'">
+    		order by t.create_date desc
+		</if>
+		
+		<if test="orderType == 'popular'">
+    		order by t.read_count asc
+		</if>
+    	
+		<if test="startRow != null and startRow >= 0 ">
+			limit #{startRow, jdbcType=NUMERIC}, #{count, jdbcType=NUMERIC}
+		</if>
+	</select>
+    <select id="getRichArticleInfoListCount" resultType="int">
+		select count(*) from tb_rich_article t where 1=1
+		<if test="articleType != null and articleType != ''">
+			and t.article_type = #{articleType}
+		</if>
+		<if test="isBalad != null and isBalad != ''">
+    		and t.is_balad = #{isBalad}
+		</if>
+	</select>
+	
+	<select id="getRichArticleInfoVOList" resultMap="RichArticleInfoVO">
+    	SELECT id,article_name,article_type,desc_text,article_image_id,create_date,order_num,read_count FROM  tb_rich_article t
+    	where 1=1
+		<if test="articleType != null and articleType != ''">
+			and t.article_type = #{articleType}
+		</if>
+		
+		<if test="isBalad != null and isBalad != ''">
+    		and t.is_balad = #{isBalad}
+		</if>
+		
+		<if test="orderType == null or orderType == '' or orderType == 'date'">
+    		order by t.create_date desc
+		</if>
+		
+		<if test="orderType == 'popular'">
+    		order by t.read_count desc
+		</if>
+    	
+		<if test="startRow != null and startRow >= 0 ">
+			limit #{startRow, jdbcType=NUMERIC}, #{count, jdbcType=NUMERIC}
+		</if>
+	</select>
+	
+	<select id="getRichArticleInfo" resultMap="RichArticleInfo">
+    	SELECT * FROM  tb_rich_article t
+		where t.id = #{id, jdbcType=NUMERIC}
+	</select>
+	
+	<update id="addRichArticleInfoReadCount">
+		update tb_rich_article set
+			read_count = read_count+1
+		where id = #{id, jdbcType=NUMERIC}
+	</update>
+	
+	
+	<resultMap type="TeamScore" id="TeamScore">  
+        <id property="id" column="id"/>  
+        <result property="draw" column="draw"/>  
+        <result property="lose" column="lose"/>  
+        <result property="name" column="name"/>
+        <result property="pointLose" column="point_lose"/>
+        <result property="pointWin" column="point_win"/>
+        <result property="roundTime" column="round_time"/>
+        <result property="totalScore" column="total_score"/>
+        <result property="win" column="win"/>
+        <result property="pointOffset" column="point_offset"/>
+        <association property="logoImg" column="logo_img" select="getImageById" />  
+    </resultMap>
+    <select id="getTeamScoreList" resultMap="TeamScore">
+    	SELECT * FROM  tb_team_score t
+		ORDER BY t.total_score desc
+		<if test="startRow != null and startRow >= 0 ">
+			limit #{startRow, jdbcType=NUMERIC}, #{count, jdbcType=NUMERIC}
+		</if>
+	</select>
+    <select id="getTeamScoreListCount" resultType="int">
+		select count(*) from tb_team_score
+	</select>
+	<update id="updateTeamScore" parameterType="TeamScore">
+		update tb_team_score set
+			draw = #{draw, jdbcType=NUMERIC},
+			lose = #{lose, jdbcType=NUMERIC},
+			name = #{name, jdbcType=VARCHAR},
+			point_lose = #{pointLose, jdbcType=NUMERIC},
+			point_win = #{pointWin, jdbcType=NUMERIC},
+			round_time = #{roundTime, jdbcType=NUMERIC},
+			total_score = #{totalScore, jdbcType=NUMERIC},
+			win = #{win, jdbcType=NUMERIC},
+			logo_img = #{logoImg.id, jdbcType=NUMERIC},
+			point_offset = #{pointOffset, jdbcType=NUMERIC}
+		where id = #{id, jdbcType=NUMERIC}
+	</update>
+	<insert id="insertTeamScore" parameterType="TeamScore" useGeneratedKeys="true" keyProperty="id">
+		insert into tb_team_score(draw,lose,name,point_lose,point_win,round_time,total_score,win,point_offset,logo_img)
+		values(
+			#{draw},
+			#{lose},
+			#{name},
+			#{pointLose},
+			#{pointWin},
+			#{roundTime},
+			#{totalScore},
+			#{win},
+			#{pointOffset},
+			#{logoImg.id}
+		)
+	</insert>
+	<delete id="deleteTeamScore">
+		delete from tb_team_score where id = #{id, jdbcType=NUMERIC}
+	</delete>
+	
+	<select id="getTeamInfoById" resultMap="TeamScore">
+    	select * from tb_team_score where id = #{id, jdbcType=NUMERIC}
+    </select> 
+	
+	<resultMap type="MatchSchedule" id="MatchSchedule">  
+        <id property="id" column="id"/>  
+        <result property="matchPlace" column="match_place"/>  
+        <result property="isLocal" column="is_local"/>  
+        <result property="matchResult" column="match_result"/>
+        <result property="matchTime" column="match_time"/>
+        <result property="score" column="score"/>
+        <result property="matchName" column="match_name"/>
+        <association property="teamInfo" column="team_id" select="getTeamInfoById" />  
+    </resultMap>
+    <select id="getMatchScheduleList" resultMap="MatchSchedule">
+    
+		SELECT * FROM tb_match_schedule t ORDER BY t.match_time ASC 
+		<if test="startRow != null and startRow >= 0 ">
+			limit #{startRow, jdbcType=NUMERIC}, #{count, jdbcType=NUMERIC}
+		</if>
+	</select>
+    <select id="getMatchScheduleListCount" resultType="int">
+		select count(*) from tb_match_schedule
+	</select>
+	<update id="updateMatchSchedule" parameterType="MatchSchedule">
+		update tb_match_schedule set
+			match_place = #{matchPlace, jdbcType=VARCHAR},
+			is_local = #{isLocal, jdbcType=VARCHAR},
+			match_result = #{matchResult, jdbcType=VARCHAR},
+			match_time = #{matchTime, jdbcType=TIMESTAMP},
+			score = #{score, jdbcType=VARCHAR},
+			team_id = #{teamInfo.id, jdbcType=NUMERIC},
+			match_name = #{matchName, jdbcType=VARCHAR}
+		where id = #{id, jdbcType=NUMERIC}
+	</update>
+	<insert id="insertMatchSchedule" parameterType="MatchSchedule" useGeneratedKeys="true" keyProperty="id">
+		insert into tb_match_schedule(match_place,is_local,match_result,match_time,score,team_id,match_name)
+		values(
+			#{matchPlace},
+			#{isLocal},
+			#{matchResult},
+			#{matchTime},
+			#{score},
+			#{teamInfo.id},
+			#{matchName}
+		)
+	</insert>
+	<delete id="deleteMatchSchedule">
+		delete from tb_match_schedule where id = #{id, jdbcType=NUMERIC}
+	</delete>
+	
+	<select id="getNextMatchSchedule" resultMap="MatchSchedule">
+    	SELECT * FROM tb_match_schedule WHERE match_time >=SYSDATE()
+		ORDER BY match_time ASC LIMIT 1
+	</select>
+	
+	<select id="getLastMatchSchedule" resultMap="MatchSchedule">
+    	SELECT * FROM tb_match_schedule WHERE match_time &lt; SYSDATE()
+		ORDER BY match_time desc LIMIT 1
+	</select>
+	
+	
+	
+	<resultMap type="FeedBackInfo" id="FeedBackInfo">  
+        <id property="id" column="id"/>  
+        <result property="userName" column="user_name"/>  
+        <result property="email" column="email"/>  
+        <result property="contentText" column="content_text"/>  
+        <result property="status" column="status"/>  
+        <result property="createDate" column="create_date"/>  
+    </resultMap>
+    
+    <insert id="insertFeedBackInfo" parameterType="FeedBackInfo" useGeneratedKeys="true" keyProperty="id">
+		insert into tb_feedback(user_name,email,content_text,status,create_date)
+		values(
+			#{userName},
+			#{email},
+			#{contentText},
+			'1',
+			sysdate()
+		)
+	</insert>
+    
+    <select id="getFeedBackInfoList" resultMap="FeedBackInfo">
+		select * from tb_feedback where status=#{status}
+		order by create_date desc
+		<if test="startRow != null and startRow >= 0 ">
+			limit #{startRow, jdbcType=NUMERIC}, #{count, jdbcType=NUMERIC}
+		</if>
+	</select>
+	
+	 <select id="getFeedBackInfoListCount" resultType="int">
+		select count(*) from tb_feedback
+		<if test="status != null ">
+			where status = #{status}
+		</if>
+	</select>
+	
+	<update id="updateFeedBackInfo">
+		update tb_feedback set
+			status = '0'
+		where id=#{id}
+	</update>
+	
+	<!-- <resultMap type="SecPageInfo" id="SecPageInfo">  
+        <id property="id" column="id"/>  
+        <result property="pageName" column="page_name"/>  
+        <result property="pageCode" column="page_code"/>  
+        <result property="pageText" column="page_text"/>
+        <result property="orderNum" column="order_num"/>
+        <result property="pageParent" column="page_parent"/>
+    </resultMap>
+	<update id="updateSecPageInfo" parameterType="SecPageInfo">
+		update tb_sec_page set
+			page_name = #{pageName},
+			page_code = #{pageCode},
+			page_text = #{pageText},
+			order_num = #{orderNum},
+			page_parent = #{orderNum}
+			
+		where id = #{id, jdbcType=NUMERIC}
+	</update>
+	<insert id="insertSecPageInfo" parameterType="SecPageInfo" useGeneratedKeys="true" keyProperty="id">
+		insert into tb_sec_page(page_name,page_code,page_text,order_num,pape_parent)
+		values(
+			#{pageName},
+			#{pageCode},
+			#{pageText},
+			#{orderNum},
+			#{pageParent}
+		)
+	</insert>
+	<delete id="deleteSecPageInfo">
+		delete from tb_sec_page where id = #{id, jdbcType=NUMERIC}
+	</delete>
+	<select id="getSecPageInfoList" resultMap="SecPageInfoList">
+    	SELECT * FROM  tb_sec_page t
+		ORDER BY t.order_num asc
+		<if test="startRow != null and startRow >= 0 ">
+			limit #{startRow, jdbcType=NUMERIC}, #{count, jdbcType=NUMERIC}
+		</if>
+	</select>
+    <select id="getSecPageInfoListCount" resultType="int">
+		select count(*) from tb_sec_page
+	</select> -->
+	
+	<!-- 
+	<resultMap type="Intro" id="Intro">  
+        <id property="id" column="id"/>  
+        <result property="introText" column="intro_text"/>  
+    </resultMap>
+	
+	<select id="getIntro" resultMap="Intro">
+		select * from tb_intro
+	</select>
+	
+	<update id="updateIntro">
+		update tb_intro set
+			intro_text = #{introText, jdbcType=VARCHAR}
+	</update>
+	
+	
+	<resultMap type="PurpInfo" id="PurpInfo">  
+        <id property="id" column="id"/>  
+        <result property="content" column="content"/>  
+        <association property="purpImage" column="purp_image_id" select="getImageById" />
+    </resultMap>
+    
+    <select id="getPurpInfo" resultMap="PurpInfo">
+		select * from tb_purp
+	</select>
+	
+	<update id="updatePurpInfo">
+		update tb_purp set
+			content = #{content, jdbcType=VARCHAR},
+			purp_image_id = #{purpImage, jdbcType=NUMERIC}
+	</update>
+	
+	<resultMap type="ShowInfo" id="ShowInfo">  
+        <id property="id" column="id"/>  
+        <association property="imgOne" column="image_one_id" select="getImageById" />
+        <association property="imgTwo" column="image_two_id" select="getImageById" />
+        <association property="imgThree" column="image_three_id" select="getImageById" />
+    </resultMap>
+    
+    <select id="getShowInfo" resultMap="ShowInfo">
+		select * from tb_show
+	</select>
+	
+	<update id="updateShowInfo">
+		update tb_show set
+			image_one_id = #{imgOne, jdbcType=NUMERIC},
+			image_two_id = #{imgTwo, jdbcType=NUMERIC},
+			image_three_id = #{imgThree, jdbcType=NUMERIC}
+	</update>
+	
+	
+	<resultMap type="ContactInfo" id="ContactInfo">  
+        <id property="id" column="id"/>  
+        <result property="compName" column="comp_name"/>  
+        <result property="zipCode" column="zip_code"/>  
+        <result property="email" column="email"/>  
+        <result property="fax" column="fax"/>  
+        <result property="site" column="site"/>  
+        <result property="address" column="address"/>  
+        <association property="weiboImg" column="weibo_img_id" select="getImageById" />
+        <association property="weixinImg" column="weixin_img_id" select="getImageById" />
+    </resultMap>
+    
+    <select id="getContactInfo" resultMap="ContactInfo">
+		select * from tb_contact
+	</select>
+	
+	<update id="updateContactInfo">
+		update tb_contact set
+			comp_name = #{compName, jdbcType=VARCHAR},
+			zip_code = #{zipCode, jdbcType=VARCHAR},
+			email = #{email, jdbcType=VARCHAR},
+			fax = #{fax, jdbcType=VARCHAR},
+			site = #{site, jdbcType=VARCHAR},
+			address = #{address, jdbcType=VARCHAR},
+			weibo_img_id = #{weiboImg, jdbcType=NUMERIC},
+			weixin_img_id = #{weixinImg, jdbcType=NUMERIC}
+	</update>
+	
+	
+	公司历程
+	<resultMap type="TimeLineInfo" id="TimeLineInfo">  
+        <id property="id" column="id"/>  
+        <result property="date" column="date"/>  
+        <result property="content" column="content"/>  
+    </resultMap>
+    
+    <select id="getTimeLineInfoList" resultMap="TimeLineInfo">
+    	SELECT * FROM (
+		SELECT t.*,STR_TO_DATE(t.DATE,'%Y年%c月') tmp FROM tb_time_line t) rs
+		ORDER BY rs.tmp desc
+		<if test="startRow != null and startRow >= 0 ">
+			limit #{startRow, jdbcType=NUMERIC}, #{count, jdbcType=NUMERIC}
+		</if>
+	</select>
+    <select id="getTimeLineInfoListCount" resultType="int">
+		select count(*) from tb_time_line order by date desc
+	</select>
+	
+	<update id="updateTimeLineInfo" parameterType="TimeLineInfo">
+		update tb_time_line set
+			date = #{date, jdbcType=VARCHAR},
+			content = #{content, jdbcType=VARCHAR}
+		where id = #{id, jdbcType=NUMERIC}
+	</update>
+	<insert id="insertTimeLineInfo" parameterType="TimeLineInfo" useGeneratedKeys="true" keyProperty="id">
+		insert into tb_time_line(date,content)
+		values(
+			#{date, jdbcType=VARCHAR},
+			#{content, jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<delete id="deleteTimeLineInfo">
+		delete from tb_time_line where id = #{id, jdbcType=NUMERIC}
+	</delete>
+	
+	公司新闻
+	<resultMap type="NewsInfo" id="NewsInfo">  
+        <id property="id" column="id"/>  
+        <result property="title" column="title"/>  
+        <result property="content" column="content"/>  
+        <result property="type" column="news_type"/>  
+        <result property="createTime" column="create_time"/>  
+        <result property="ordNum" column="ord_num"/>  
+        <association property="img" column="img_id" select="getImageById" /> 
+    </resultMap>
+    <select id="getNewsInfoList" resultMap="NewsInfo">
+		select * from tb_news
+		where news_type=#{type, jdbcType=VARCHAR}
+		order by ord_num desc,create_time desc
+		limit #{startRow, jdbcType=NUMERIC}, #{count, jdbcType=NUMERIC}
+	</select>
+    <select id="getNewsInfoListCount" resultType="int">
+		select count(*) from tb_news where news_type=#{type, jdbcType=VARCHAR}
+	</select>
+	<update id="updateNewsInfo" parameterType="NewsInfo">
+		update tb_news set
+			title = #{title, jdbcType=VARCHAR},
+			content = #{content, jdbcType=VARCHAR},
+			img_id = #{img.id, jdbcType=NUMERIC},
+			news_type = #{type, jdbcType=NUMERIC},
+			create_time = sysdate(),
+			ord_num = #{ordNum, jdbcType=VARCHAR}
+		where id = #{id, jdbcType=NUMERIC}
+	</update>
+	<insert id="insertNewsInfo" parameterType="NewsInfo" useGeneratedKeys="true" keyProperty="id">
+		insert into tb_news(title,content,img_id,news_type,create_time,ord_num)
+		values(
+			#{title, jdbcType=VARCHAR},
+			#{content, jdbcType=VARCHAR},
+			#{img.id, jdbcType=VARCHAR},
+			#{type, jdbcType=NUMERIC},
+			sysdate(),
+			#{ordNum, jdbcType=VARCHAR}
+		)
+	</insert>
+	<delete id="deleteNewsInfo">
+		delete from tb_news where id = #{id, jdbcType=NUMERIC}
+	</delete>
+	
+	
+	产品
+	<resultMap type="PrdInfo" id="PrdInfo">  
+        <id property="id" column="id"/>  
+        <result property="name" column="name"/>  
+        <result property="content" column="content"/>  
+        <association property="logoImg" column="logo_img_id" select="getImageById" /> 
+    </resultMap>
+    <select id="getPrdInfoList" resultMap="PrdInfo">
+		select * from tb_prd
+			limit #{startRow, jdbcType=NUMERIC}, #{count, jdbcType=NUMERIC}
+	</select>
+    <select id="getPrdInfoListCount" resultType="int">
+		select count(*) from tb_prd
+	</select>
+	<update id="updatePrdInfo" parameterType="PrdInfo">
+		update tb_prd set
+			name = #{name, jdbcType=VARCHAR},
+			content = #{content, jdbcType=VARCHAR},
+			logo_img_id = #{logoImg.id, jdbcType=NUMERIC}
+		where id = #{id, jdbcType=NUMERIC}
+	</update>
+	<insert id="insertPrdInfo" parameterType="PrdInfo" useGeneratedKeys="true" keyProperty="id">
+		insert into tb_prd(name,content,logo_img_id)
+		values(
+			#{name, jdbcType=VARCHAR},
+			#{content, jdbcType=VARCHAR},
+			#{logoImg.id, jdbcType=NUMERIC}
+		)
+	</insert>
+	<delete id="deletePrdInfo">
+		delete from tb_prd where id = #{id, jdbcType=NUMERIC}
+	</delete>
+	产品图片
+	<resultMap type="PrdImageInfo" id="PrdImageInfo">  
+        <id property="id" column="id"/>  
+        <result property="prdId" column="prd_id"/>  
+        <association property="img" column="img_id" select="getImageById" />  
+    </resultMap>
+    <select id="getPrdImageInfoList" resultMap="PrdImageInfo">
+		select * from tb_prd_image where prd_id = #{prdId, jdbcType=VARCHAR}
+	</select>
+	<insert id="insertPrdImageInfo" parameterType="PrdImageInfo" useGeneratedKeys="true" keyProperty="id">
+		insert into tb_prd_image(img_id,prd_id)
+		values(
+			#{img.id, jdbcType=NUMERIC},
+			#{prdId, jdbcType=NUMERIC}
+		)
+	</insert>
+	<update id="updatePrdImageInfo" parameterType="PrdImageInfo">
+		update tb_prd_image set
+			img_id = #{img.id, jdbcType=NUMERIC},
+			prd_id = #{prdId, jdbcType=NUMERIC}
+		where id = #{id, jdbcType=NUMERIC}
+	</update>
+	<delete id="deletePrdImageInfo">
+		delete from tb_prd_image where id = #{id, jdbcType=NUMERIC}
+	</delete>
+	
+	案例
+	<resultMap type="CaseInfo" id="CaseInfo">  
+        <id property="id" column="id"/>  
+        <result property="name" column="name"/>  
+        <result property="intro" column="intro"/>  
+        <result property="content" column="content"/>  
+        <result property="ord" column="ord"/>  
+    </resultMap>
+    <select id="getCaseInfoList" resultMap="CaseInfo">
+		select * from tb_case order by ord
+		<if test="startRow != null and startRow >= 0 ">
+			limit #{startRow, jdbcType=NUMERIC}, #{count, jdbcType=NUMERIC}
+		</if>
+	</select>
+    <select id="getCaseInfoListCount" resultType="int">
+		select count(*) from tb_case
+	</select>
+	<update id="updateCaseInfo" parameterType="CaseInfo">
+		update tb_case set
+			name = #{name, jdbcType=VARCHAR},
+			intro = #{intro, jdbcType=VARCHAR},
+			content = #{content, jdbcType=VARCHAR},
+			ord = #{ord, jdbcType=VARCHAR}
+		where id = #{id, jdbcType=NUMERIC}
+	</update>
+	<insert id="insertCaseInfo" parameterType="CaseInfo" useGeneratedKeys="true" keyProperty="id">
+		insert into tb_case(name,intro,content,ord)
+		values(
+			#{name, jdbcType=VARCHAR},
+			#{intro, jdbcType=VARCHAR},
+			#{content, jdbcType=VARCHAR},
+			#{ord, jdbcType=VARCHAR}
+		)
+	</insert>
+	<delete id="deleteCaseInfo">
+		delete from tb_case where id = #{id, jdbcType=NUMERIC}
+	</delete>
+	案例图片
+	<resultMap type="CaseImageInfo" id="CaseImageInfo">  
+        <id property="id" column="id"/>  
+        <result property="caseId" column="case_id"/>  
+        <association property="img" column="img_id" select="getImageById" />  
+    </resultMap>
+    <select id="getCaseImageInfoList" resultMap="CaseImageInfo">
+		select * from tb_case_image where case_id = #{caseId, jdbcType=VARCHAR}
+	</select>
+	<insert id="insertCaseImageInfo" parameterType="CaseImageInfo" useGeneratedKeys="true" keyProperty="id">
+		insert into tb_case_image(img_id,case_id)
+		values(
+			#{img.id, jdbcType=NUMERIC},
+			#{caseId, jdbcType=NUMERIC}
+		)
+	</insert>
+	<update id="updateCaseImageInfo" parameterType="CaseImageInfo">
+		update tb_case_image set
+			img_id = #{img.id, jdbcType=NUMERIC},
+			case_id = #{caseId, jdbcType=NUMERIC}
+		where id = #{id, jdbcType=NUMERIC}
+	</update>
+	<delete id="deleteCaseImageInfo">
+		delete from tb_case_image where id = #{id, jdbcType=NUMERIC}
+	</delete> -->
+	
+	<resultMap type="AdminInfo" id="AdminInfo">  
+        <id property="id" column="id"/>  
+        <result property="adminName" column="admin_name"/>  
+        <result property="adminPassword" column="admin_password"/> 
+    </resultMap>  
+	
+	<select id="getAdminInfo" resultMap="AdminInfo">
+		select * from tb_admin where admin_name = #{adminName, jdbcType=VARCHAR}
+	</select>
+	
+		<select id="getAdminInfoList" resultMap="AdminInfo">
+		select * from tb_admin
+	</select>
+	
+	<update id="updateAdminInfo" parameterType="AdminInfo">
+		update tb_admin set
+			admin_password = #{adminPassword, jdbcType=VARCHAR}
+		where id = #{id, jdbcType=NUMERIC}
+	</update>
+	
+</mapper>
