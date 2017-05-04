@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!-- 
+	 ====================================================================== 
+     perbank5 builder 4 product                                                      
+     ====================================================================== 
+-->
+
+<project name="perbank5" default="all">
+	<property name="target" value="target" />
+	<property name="WebContent" value="../WebContent" />
+	<property name="ProductFile" value="ProductFile" />
+	<property name="appName" value="HDSite" />
+	<tstamp>
+		<format property="TODAY" pattern="yyyyMMdd" locale="cn" />
+	</tstamp>
+
+	<target name="init" depends="clean" description="初始化">
+		<echo>${appName} ${TODAY}</echo>
+	</target>
+	<target name="clean" description="清理">
+		<delete dir="${target}" />
+		<mkdir dir="${target}" />
+	</target>
+
+	
+	<target name="packApp" depends="init" description="放到上传准备目录">
+		<copy todir="${target}/${appName}-${TODAY}" overwrite="true">
+			<fileset dir="${WebContent}">
+				<include name="index.html"/>
+				<include name="investment_team.html"/>
+				<include name="about_us.html"/>
+				<include name="business_areas.html"/>
+				<include name="infomation_center.html"/>
+				<include name="infomation_content.html"/>
+				<include name="investment_case.html"/>
+				<include name="investor_relations.html"/>
+				
+				<include name="js/investmentTeam.js"/>
+				<include name="js/Site.js"/>
+				<include name="images/bigguy.jpg"/>
+				<include name="images/teamleader.jpg"/>
+				<include name="css/style.css"/>
+				
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="copytoupload" description="生成APP增量">
+			<copy todir="E:\prsnl\hdtr\versions\${TODAY}" overwrite="true">
+				<fileset dir="${target}">
+				</fileset>
+			</copy>
+	</target>
+	<!-- 
+		
+	-->
+	
+	<target name="all" depends="clean, packApp,copytoupload" />
+	
+	
+</project>

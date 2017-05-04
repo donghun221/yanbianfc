@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title></title>
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<script src="js/jquery.js" language="javascript" type="text/javascript"></script>
+	<script language="javascript" type="text/javascript" src="js/ss.js"></script>
+	<script language="javascript" type="text/javascript" src="js/juicer-min.js"></script>
+	<script language="javascript" type="text/javascript" src="js/Site.js"></script>
+	<script language="javascript" type="text/javascript" src="js/index.js"></script>
+	
+</head>
+<body>
+	<div class="header">
+		<div class="headDiv">
+			<a href="index.html"><img class="logo" src="images/logo.jpg"/></a>
+			<ul class="menu">
+				<script type="text/javascript">
+					document.write(CF._menuHTML);
+				</script>
+			</ul>
+		</div>
+	</div>
+    <div class="indexCenter">
+        <div class="indexTitleDiv">
+            <div class="indexTitle" id="headDiv">
+            <script id="tpl_headText" type="text/template">
+				<h1>${headText}</h1>
+                <p class="subTitle">${subText}</p>
+			</script>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="indexContentLeft" id="indexContent">
+                <p><a style="color: rgb(196, 196, 196);" href="business_areas.html"><span>业务领域</span>&nbsp;&nbsp;Business areas</a></p>
+                <ul class="indexMenu">
+                	<script id="tpl_portalLeftTab" type="text/template">
+						{@each data as p,index}
+							<li><a href="#bContent${index+1}">${p.portalName}</a></li>
+						{@/each}
+					</script>
+                    <!-- <li><a href="#bContent1">美元基金</a></li>
+                    <li><a href="#bContent2">股权投资</a></li>
+                    <li><a href="#bContent3">并购重组</a></li>
+                    <li><a href="#bContent4">金控平台</a></li> -->
+                </ul>
+                <div class="indexLeftContent">
+                	<script id="tpl_portalLeftContent" type="text/template">
+						{@each data as p,index}
+							<div id="bContent${index+1}">
+                        		<div><img src="${p.portalImage|imgFormater}"/>
+                        		<p>${p.contentText}</p></div>
+                    		</div>
+						{@/each}
+					</script>
+                    
+                    <!-- 
+                    <div id="bContent1">
+                        <a href="#"><img src="images/business_1.jpg"/>
+                        <p>美元基金文字简介美元基金文字简介美元基金文字简介美元基金文字简介美元基金文字简介美元基金文字简介美元基金文字简介美元基金文字简介美元基金文字简介美元基金文字简介美元基金文字简介美元基金文字简介美元基金文字简介美元基金文字简介美元基金文字简介基金文字简介美元基金文字简介美元基金文字简介美元基金文字简介美元基金文字简介</p></a>
+                    </div>
+                    <div id="bContent2">
+                        <a href="#"><img src="images/business_1.jpg"/>
+                        <p>股权投资文字简介股权投资文字简介股权投资文字简介股权投资文字简介</p></a>
+                    </div>
+                    <div id="bContent3">
+                        <a href="#"><img src="images/business_1.jpg"/>
+                        <p>并购重组文字简介并购重组文字简介并购重组文字简介并购重组文字简介并购重组文字简介并购重组文字简介并购重组文字简介</p></a>
+                    </div>
+                    <div id="bContent4">
+                        <a href="#"><img src="images/business_1.jpg"/>
+                        <p>金控平台文字简介金控平台文字简介金控平台文字简介金控平台文字简介金控平台文字简介金控平台文字简介金控平台文字简介金控平台文字简介金控平台文字简介金控平台文字简介金控平台文字简介金控平台文字简介金控平台文字简介</p></a>
+                    </div> -->
+                </div>
+            </div>
+            <script id="tpl_portalRightContent" type="text/template">
+				{@each data as p,index}
+					<div class="indexContent{@if index==0}Center{@else}Right{@/if}">
+                		<p>
+							<a style="color:rgb(196, 196, 196);" href="{@if index==0}investment_case.html{@else}investment_team.html{@/if}">
+							<span>${p.portalName}</span>&nbsp;&nbsp;${p.engText}
+							</a>
+						</p>
+                		<div id="indexSubContent_{@if index==0}case{@else}team{@/if}">
+                   		<div><img src="${p.portalImage|imgFormater}"/>
+                    		<p>${p.contentText}</p></div>
+                		</div>
+            		</div>
+				{@/each}
+			</script>
+            
+            <!-- <div class="indexContentCenter">
+                <p><span>投资案例</span>&nbsp;&nbsp;Investment Case</p>
+                <div id="indexSubContent_case">
+                    <a href="#"><img src="images/case_1.jpg"/>
+                    <p>投资案例的文字说明投资案例的文字说明投资案例的文字说明投资案例的文字说明投资案例的文字说明</p></a>
+                </div>
+            </div>
+            <div class="indexContentRight">
+                <p><span>投资团队</span>&nbsp;&nbsp;Investment Team</p>
+                <div id="indexSubContent_team">
+                    <a href="#"><img src="images/team_1.jpg"/>
+                    <p>投资团队的文字说明投资团队的文字说明投资团队的文字说明投资团队的文字说明投资团队的文字说明投资团队的文字说明投资团队的文字说明投资团队的文字说明投资团队的文字说明</p></a>
+                </div>
+            </div> -->
+            <div class="warp"></div>
+            <div class="indexContentBottom">
+                <p><span>合作伙伴</span>&nbsp;&nbsp;Cooperative Partner</p>
+                <div class="banner">
+                    <img class="bannerBtnL prev" src="images/arrow_left.jpg" width="15" height="26" />
+                    <img class="bannerBtnR next" src="images/arrow_right.jpg" width="15" height="26" />
+                    <div class="bannerList">
+                        <ul id="linkInfoListUL">                                      
+                        </ul>
+                    </div>
+
+                </div>
+                <script language="javascript">
+                    
+                </script>
+            </div>
+        </div>
+    </div>
+	 <script id="tpl_test" type="text/template">
+							{@each data as li}
+                            	<h1>${li.content}</h1>
+							{@/each}
+	</script>
+	
+	<!-- <div class="footer">
+		<div class="footDiv">
+			<p>版权所有 弘道天瑞资本 京ICP备00000000号 Copyright &copy;2014 hdtr.com All Right Reserved<br/>联系我们  电话:010-87654321  地址:北京市xx区xx路xx号</p>
+			<a href="index.html"><img src="images/logo_small.jpg"></a>
+		</div>
+	</div> -->
+	
+	<script id="tpl_linkInfo" type="text/template">
+							{@each data as li}
+                            	<li><a href="${li.linkUrl}" target="_blank"><img src="${li.linkImg|imgFormater}" width="120" height="50" /></a></li>
+							{@/each}
+	</script>
+</body>
+</html>

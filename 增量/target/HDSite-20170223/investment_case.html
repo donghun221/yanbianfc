@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title></title>
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<script src="js/jquery.js" language="javascript" type="text/javascript"></script>
+	<script language="javascript" type="text/javascript" src="js/ss.js"></script>
+	<script language="javascript" type="text/javascript" src="js/juicer-min.js"></script>
+	<script language="javascript" type="text/javascript" src="js/Site.js"></script>
+	<script language="javascript" type="text/javascript" src="js/investmentCase.js"></script>
+	<script type="text/javascript" >
+		/* function a1Click() {
+			$(".aContent1").css('display','block');
+			var lis=$(".aboutMenu li a");
+			lis[0].className='isClick';
+			lis[1].className='';
+			lis[2].className='';
+			$(".aContent2").css('display','none');
+			$(".aContent3").css('display','none');
+		}
+		function a2Click() {
+			var lis=$(".aboutMenu li a");
+			lis[0].className='';
+			lis[1].className='isClick';
+			lis[2].className='';
+			$(".aContent1").css('display','none');
+			$(".aContent2").css('display','block');
+			$(".aContent3").css('display','none');
+		}
+		function a3Click() {
+			var lis=$(".aboutMenu li a");
+			lis[0].className='';
+			lis[1].className='';
+			lis[2].className='isClick';
+			$(".aContent1").css('display','none');
+			$(".aContent2").css('display','none');
+			$(".aContent3").css('display','block');
+		} */
+	</script>
+</head>
+<body>
+	<div class="header">
+		<div class="headDiv">
+            <a href="index.html"><img class="logo" src="images/logo.jpg"/></a>
+			<ul class="menu">
+				<script type="text/javascript">
+					document.write(CF._menuHTML);
+				</script>
+			</ul>
+		</div>
+	</div>
+    <div class="caseCenter">
+        <div class="aboutTitleDiv">
+            <div class="aboutTitle">
+                <script id="tpl_headText" type="text/template">
+				<h1 style="color:#333;">${headText}</h1>
+                <p style="color:#333;">${subText}</p>
+				</script>
+            </div>
+        </div>
+        <div class="aboutContent">
+            <div class="aboutContentLeft">
+                <p><span>投资案例</span><br/>Investment Case</p>
+				<ul class="aboutMenu">
+					<script id="tpl_articleName" type="text/template">
+						{@each data as art,index}
+							<li><a id="${art.id}" index="${index}" {@if index==0}class="isClick"{@/if}>${art.articleName}</a></li>
+						{@/each}
+					</script>
+				
+					<!-- <li><a id="a1" class="isClick" onclick="a1Click()">公司概况</a></li>
+					<li><a id="a2" onclick="a2Click()">企业文化</a></li>
+					<li><a id="a3" onclick="a3Click()">总裁致辞</a></li> -->
+				</ul>
+            </div>
+			<div class="aboutContentRight">
+				
+				<script id="tpl_articleContent" type="text/template">
+						{@each data as art,index}
+							<div class="aContent" id="aContentDiv${index}" style="display:{@if index==0}block{@else}none{@/if}">
+								<h1>${art.articleName}</h1>
+								<br/>$${art.contentText}
+							</div>
+						{@/each}
+				</script>
+				
+				<!-- <div class="aContent1">
+					<h1>公司概况</h1>
+					<img src="images/about_1.jpg"/>
+					<p>公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况</p>
+				</div>
+				<div class="aContent2">
+					<h1>企业文化</h1>
+					<img src="images/about_1.jpg"/>
+					<p>企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化</p>
+				</div>
+				<div class="aContent3">
+					<h1>总裁致辞</h1>
+					<img src="images/about_1.jpg"/>
+					<p>总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞</p>
+				</div> -->
+			</div>
+        </div>
+		<img class="aboutBgBottom" src="images/case_bg_bottom.jpg" />
+    </div>
+
+	<script id="tpl_footer" type="text/template">
+		<div class="footer">
+			<div class="footDiv">
+				<p>$${copyrightText}<br/>${addressText}</p>
+				<a href="index.html"><img src="images/logo_small.jpg"></a>
+			</div>
+		</div>
+	</script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title></title>
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<script src="js/jquery.js" language="javascript" type="text/javascript"></script>
+	<script language="javascript" type="text/javascript" src="js/ss.js"></script>
+	<script language="javascript" type="text/javascript" src="js/juicer-min.js"></script>
+	<script language="javascript" type="text/javascript" src="js/Site.js"></script>
+	<script language="javascript" type="text/javascript" src="js/infomationCenter.js"></script>
+	<script type="text/javascript" >
+		function in1Click() {
+			var lis=$(".infoMenu li a");
+			lis[0].className='isClick';
+			lis[1].className='';
+			lis[2].className='';
+			lis[3].className='';
+			$(".inc1").css('display','block');
+			$(".inc2").css('display','none');
+			$(".inContent3").css('display','none');
+			$(".inContent4").css('display','none');
+			$("#inContentDetail").css('display','none');
+		}
+		function in2Click() {
+			var lis=$(".infoMenu li a");
+			lis[0].className='';
+			lis[1].className='isClick';
+			lis[2].className='';
+			lis[3].className='';
+			$(".inc1").css('display','none');
+			$(".inc2").css('display','block');
+			$(".inContent3").css('display','none');
+			$(".inContent4").css('display','none');
+			$("#inContentDetail").css('display','none');
+		}
+		function in3Click() {
+			var lis=$(".infoMenu li a");
+			lis[0].className='';
+			lis[1].className='';
+			lis[2].className='isClick';
+			lis[3].className='';
+			$(".inc1").css('display','none');
+			$(".inc2").css('display','none');
+			$(".inContent3").css('display','block');
+			$(".inContent4").css('display','none');
+			$("#inContentDetail").css('display','none');
+		}
+		function in4Click() {
+			var lis=$(".infoMenu li a");
+			lis[0].className='';
+			lis[1].className='';
+			lis[2].className='';
+			lis[3].className='isClick';
+			$(".inc1").css('display','none');
+			$(".inc2").css('display','none');
+			$(".inContent3").css('display','none');
+			$(".inContent4").css('display','block');
+			$("#inContentDetail").css('display','none');
+		}
+	</script>
+</head>
+<body>
+	<div class="header">
+		<div class="headDiv">
+			<a href="index.html"><img class="logo" src="images/logo.jpg"/></a>
+			<ul class="menu">
+				<script type="text/javascript">
+					document.write(CF._menuHTML);
+				</script>
+			</ul>
+		</div>
+	</div>
+	<div class="infoCenter">
+		<div class="infoTitleDiv">
+			<div class="infoTitle">
+			<script id="tpl_headText" type="text/template">
+				<h1>${headText}</h1>
+                <p>${subText}</p>
+			</script>
+			</div>
+		</div>
+		<div class="infoContent">
+			<div class="infoContentLeft">
+				<p><span>资讯中心</span><br/>Infomation Center</p>
+				<ul class="infoMenu">
+					<li><a id="in1" class="isClick" onclick="in1Click()">行业资讯</a></li>
+					<li><a id="in2" onclick="in2Click()">弘道资讯</a></li>
+					<li><a id="in3" onclick="in3Click()">招贤纳士</a></li>
+					<li><a id="in4" onclick="in4Click()">联系我们</a></li>
+				</ul>
+			</div>
+			<div class="infoContentRight">
+				<div class="inContent2 inc1">
+					<h1>行业资讯</h1>
+					<ul class="inContent2List inc1List" id="hyzx">
+					
+					</ul>
+					<div class="teamPageControl">
+                        <a class="teamPageLeft" id="prePageBtnHYZX"><img src="images/t_arrow_enable_left.png"/>上一页</a>
+                        <a class="teamPageRight" id="nextPageBtnHYZX">下一页<img src="images/t_arrow_enable.png"/></a>
+                    </div>
+				</div>
+				<div class="inContent2 inc2">
+					<h1>弘道资讯</h1>
+					<ul class="inContent2List inc2List" id="hdzx">
+						
+					</ul>
+					<div class="teamPageControl">
+                        <a class="teamPageLeft" id="prePageBtnHDZX"><img src="images/t_arrow_enable_left.png"/>上一页</a>
+                        <a class="teamPageRight" id="nextPageBtnHDZX">下一页<img src="images/t_arrow_enable.png"/></a>
+                    </div>
+				</div>
+				<div class="inContent3">
+					<h1>招贤纳士</h1>
+					<!-- <p class="infoContent3Title">公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介</p> -->
+					<ul class="inContent3List" id="zxns">
+						
+					</ul>
+					<div class="teamPageControl">
+                        <a class="teamPageLeft" id="prePageBtnZXNS"><img src="images/t_arrow_enable_left.png"/>上一页</a>
+                        <a class="teamPageRight" id="nextPageBtnZXNS">下一页<img src="images/t_arrow_enable.png"/></a>
+                    </div>
+				</div>
+				<div class="inContent4">
+					<h1>联系我们</h1>
+					<div class="inContent4Top">
+						<script id="tpl_contact" type="text/template">
+						<img src="${weiboImg|imgFormater}"/>
+						<p>总机 : ${zipCode}<br/>传真 : ${fax}<br/>邮箱 : ${email}<br/>地址 : ${address}</p>
+						</script>
+					</div>
+					<div class="inContent4Bottom">
+						<h2>在线留言</h2>
+						<br/>
+						<p style="margin-left:20px;">姓名</p>
+						<input  style="margin-left:20px;" length="10" id="fbUserName" class="infoText1" type="text">
+						<p style="margin-left:20px;">邮箱</p>
+						<input  style="margin-left:20px;" length="30" id="fbEmail" class="infoText2" type="text">
+						<p style="margin-left:20px;">内容</p>
+						<textarea style="width:95%;margin-left:20px;" id="fbContentText" rows="4" class="infoText3"></textarea>
+						<br/><input  style="margin-left:20px;" type="button" value="提交" id="submitFeedBackBtn"/>
+					</div>
+				</div>
+				<div class="inContentDetail" id="inContentDetail">
+					<h2 id="inContentDetailCloseBtn"><<返回</h2>
+					<h1>联系我们</h1>
+					<ul class="inContentDetailHTML" id="inContentDetailHTML">
+					</ul>
+				</div>
+			</div>
+		</div>
+		<img class="infoBgBottom" src="images/info_bg_bottom.jpg" />
+	</div>
+	<script id="tpl_footer" type="text/template">
+		<div class="footer">
+			<div class="footDiv">
+				<p>$${copyrightText}<br/>${addressText}</p>
+				<a href="index.html"><img src="images/logo_small.jpg"></a>
+			</div>
+		</div>
+	</script>
+	
+	<script id="tpl_hyzx" type="text/template">
+					{@each data as info,index}
+								<li>
+									<a style="cursor:pointer" onclick="showRich('hyzx',${index})">
+										<img src="${info.articleImage|imgFormater}"/>
+										<h3>${info.articleName}</h3>
+										<p class="infoAbstract2">${info.descText}</p>
+										<p class="infoTime2">${info.createDate}</p>
+									</a>
+								</li>
+						{@/each}
+	</script>						
+	<script id="tpl_hdzx" type="text/template">
+					{@each data as info,index}
+								<li>
+									<a style="cursor:pointer" onclick="showRich('hdzx',${index})">
+										<img src="${info.articleImage|imgFormater}"/>
+										<h3>${info.articleName}</h3>
+										<p class="infoAbstract2">${info.descText}</p>
+										<p class="infoTime2">${info.createDate}</p>
+									</a>
+								</li>
+						{@/each}
+	</script>						
+	<script id="tpl_zxns" type="text/template">
+					{@each data as info,index}
+						<li>
+							<a style="cursor:pointer" onclick="showRich('zxns',${index})">
+								<img src="${info.articleImage|imgFormater}"/>
+								<h2>${info.articleName}</h2>
+								<p class="infoAbstract3">${info.descText}</p>
+								<p class="infoMore">查看详情></p>
+							</a>
+						</li>
+					{@/each}
+	</script>						
+</body>
+</html>
