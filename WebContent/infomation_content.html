@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title></title>
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<script src="js/jquery.js" language="javascript" type="text/javascript"></script>
+	<script language="javascript" type="text/javascript" src="js/ss.js"></script>
+	<script language="javascript" type="text/javascript" src="js/juicer-min.js"></script>
+	<script language="javascript" type="text/javascript" src="js/Site.js"></script>
+	<script language="javascript" type="text/javascript" src="js/infomation_content.js"></script>
+	<script type="text/javascript" >
+		function b1Click() {
+			var lis=$(".businessMenu li a");
+			lis[0].className='isClick';
+			lis[1].className='';
+			lis[2].className='';
+			lis[3].className='';
+			$(".bContent1").css('display','block');
+			$(".bContent2").css('display','none');
+			$(".bContent3").css('display','none');
+			$(".bContent4").css('display','none');
+		}
+		function b2Click() {
+			var lis=$(".businessMenu li a");
+			lis[0].className='';
+			lis[1].className='isClick';
+			lis[2].className='';
+			lis[3].className='';
+			$(".bContent1").css('display','none');
+			$(".bContent2").css('display','block');
+			$(".bContent3").css('display','none');
+			$(".bContent4").css('display','none');
+		}
+		function b3Click() {
+			var lis=$(".businessMenu li a");
+			lis[0].className='';
+			lis[1].className='';
+			lis[2].className='isClick';
+			lis[3].className='';
+			$(".bContent1").css('display','none');
+			$(".bContent2").css('display','none');
+			$(".bContent3").css('display','block');
+			$(".bContent4").css('display','none');
+		}
+		function b4Click() {
+			var lis=$(".businessMenu li a");
+			lis[0].className='';
+			lis[1].className='';
+			lis[2].className='';
+			lis[3].className='isClick';
+			$(".bContent1").css('display','none');
+			$(".bContent2").css('display','none');
+			$(".bContent3").css('display','none');
+			$(".bContent4").css('display','block');
+		}
+	</script>
+</head>
+<body>
+	<div class="header">
+		<div class="headDiv">
+			<img class="logo" src="images/logo.jpg"/>
+			<ul class="menu">
+				<script type="text/javascript">
+					document.write(CF._menuHTML);
+				</script>
+			</ul>
+		</div>
+	</div>
+	<div class="businessCenter">
+		<div class="businessTitleDiv">
+			<div class="businessTitle">
+			<script id="tpl_headText" type="text/template">
+				<h1>${headText}</h1>
+                <p>${subText}</p>
+			</script>
+			</div>
+		</div>
+		<div class="businessContent">
+			<div class="businessContentLeft">
+				<p><span>业务领域</span><br/>Business Areas</p>
+				<ul class="businessMenu">
+					<li><a id="b1" class="isClick" onclick="b1Click()">美元基金</a></li>
+					<li><a id="b2" onclick="b2Click()">股权投资</a></li>
+					<li><a id="b3" onclick="b3Click()">并购重组</a></li>
+					<li><a id="b4" onclick="b4Click()">金控平台</a></li>
+				</ul>
+			</div>
+			<div class="businessContentRight">
+				<div class="bContent1">
+					<h1>美元基金</h1>
+					<p>美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金</p>
+					<img src="images/business_2.jpg"/>
+					<p>美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金美元基金</p>
+				</div>
+				<div class="bContent2">
+					<h1>股权投资</h1>
+					<p>股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资</p>
+					<img src="images/business_2.jpg"/>
+					<p>股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资股权投资</p>
+				</div>
+				<div class="bContent3">
+					<h1>并购重组</h1>
+					<p>并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组</p>
+					<img src="images/business_2.jpg"/>
+					<p>并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组并购重组</p>
+				</div>
+				<div class="bContent4">
+					<h1>金控平台</h1>
+					<p>金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台</p>
+					<img src="images/business_2.jpg"/>
+					<p>金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台金控平台</p>
+				</div>
+			</div>
+		</div>
+		<img class="businessBgBottom" src="images/business_bg_bottom.jpg" />
+	</div>
+	<div class="footer">
+		<div class="footDiv">
+			<p>版权所有 弘道天瑞资本 京ICP备00000000号 Copyright &copy;2014 hdtr.com All Right Reserved<br/>联系我们  电话:010-87654321  地址:北京市xx区xx路xx号</p>
+			<img src="images/logo_small.jpg">
+		</div>
+	</div>
+</body>
+</html>

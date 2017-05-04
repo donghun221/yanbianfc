@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title></title>
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<script src="js/jquery.js" language="javascript" type="text/javascript"></script>
+	<script language="javascript" type="text/javascript" src="js/ss.js"></script>
+	<script type="text/javascript" >
+		function a1Click() {
+			$(".aContent1").css('display','block');
+			var lis=$(".aboutMenu li a");
+			lis[0].className='isClick';
+			lis[1].className='';
+			lis[2].className='';
+			$(".aContent2").css('display','none');
+			$(".aContent3").css('display','none');
+		}
+		function a2Click() {
+			var lis=$(".aboutMenu li a");
+			lis[0].className='';
+			lis[1].className='isClick';
+			lis[2].className='';
+			$(".aContent1").css('display','none');
+			$(".aContent2").css('display','block');
+			$(".aContent3").css('display','none');
+		}
+		function a3Click() {
+			var lis=$(".aboutMenu li a");
+			lis[0].className='';
+			lis[1].className='';
+			lis[2].className='isClick';
+			$(".aContent1").css('display','none');
+			$(".aContent2").css('display','none');
+			$(".aContent3").css('display','block');
+		}
+	</script>
+</head>
+<body>
+	<div class="header">
+		<div class="headDiv">
+            <a href="index.html"><img class="logo" src="images/logo.jpg"/></a>
+			<ul class="menu">
+				<li><a href="index.html">首页</a></li>
+				<li><a href="about_us.html">关于我们</a>
+					<ul class="subMenu">
+						<li><a href="about_us.html">公司概况</a></li>
+						<li><a href="about_us.html">企业文化</a></li>
+						<li><a href="about_us.html">总裁致辞</a></li>
+					</ul>
+				</li>
+				<li><a href="investment_team.html">投资团队</a>
+					<ul class="subMenu">
+						<li><a href="investment_team.html">创始合伙人</a></li>
+						<li><a href="investment_team.html">管理团队</a></li>
+						<li><a href="investment_team.html">员工风采</a></li>
+					</ul>
+				</li>
+				<li><a href="business_areas.html">业务领域</a>
+					<ul class="subMenu">
+						<li><a href="business_areas.html">美元基金</a></li>
+						<li><a href="business_areas.html">股权投资</a></li>
+						<li><a href="business_areas.html">并购重组</a></li>
+						<li><a href="business_areas.html">金控平台</a></li>
+					</ul>
+				</li>
+				<li><a href="investment_case.html">投资案例</a>
+					<ul class="subMenu">
+						<li><a href="investment_case.html">美元基金</a></li>
+						<li><a href="investment_case.html">股权投资</a></li>
+						<li><a href="investment_case.html">并购重组</a></li>
+						<li><a href="investment_case.html">金控平台</a></li>
+						<li><a href="investment_case.html">其他</a></li>
+					</ul>
+				</li>
+				<li><a href="investor_relations.html">投资者关系</a>
+					<ul class="subMenu">
+						<li><a href="investor_relations.html">主要LP</a></li>
+						<li><a href="investor_relations.html">投资俱乐部</a></li>
+						<li><a href="investor_relations.html">服务中心</a></li>
+					</ul>
+				</li>
+				<li><a href="infomation_center.html">资讯中心</a>
+					<ul class="subMenu">
+						<li><a href="infomation_center.html">行业资讯</a></li>
+						<li><a href="infomation_center.html">弘道资讯</a></li>
+						<li><a href="infomation_center.html">招贤纳士</a></li>
+						<li><a href="infomation_center.html">联系我们</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+    <div class="aboutCenter">
+        <div class="aboutTitleDiv">
+            <div class="aboutTitle">
+                <h1>文案文案文案文案文案</h1>
+                <p>abcdefghijklmnopqrst</p>
+            </div>
+        </div>
+        <div class="aboutContent">
+            <div class="aboutContentLeft">
+                <p><span>关于我们</span><br/>About Us</p>
+				<ul class="aboutMenu">
+					<li><a id="a1" class="isClick" onclick="a1Click()">公司概况</a></li>
+					<li><a id="a2" onclick="a2Click()">企业文化</a></li>
+					<li><a id="a3" onclick="a3Click()">总裁致辞</a></li>
+				</ul>
+            </div>
+			<div class="aboutContentRight">
+				<div class="aContent1">
+					<h1>公司概况</h1>
+					<img src="images/about_1.jpg"/>
+					<p>公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况</p>
+				</div>
+				<div class="aContent2">
+					<h1>企业文化</h1>
+					<img src="images/about_1.jpg"/>
+					<p>企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化</p>
+				</div>
+				<div class="aContent3">
+					<h1>总裁致辞</h1>
+					<img src="images/about_1.jpg"/>
+					<p>总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞</p>
+				</div>
+			</div>
+        </div>
+		<img class="aboutBgBottom" src="images/about_bg_bottom.jpg" />
+    </div>
+
+	<div class="footer">
+		<div class="footDiv">
+			<p>版权所有 弘道天瑞资本 京ICP备00000000号 Copyright &copy;2014 hdtr.com All Right Reserved<br/>联系我们  电话:010-87654321  地址:北京市xx区xx路xx号</p>
+			<img src="images/logo_small.jpg">
+		</div>
+	</div>
+</body>
+</html>

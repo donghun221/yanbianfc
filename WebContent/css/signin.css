@@ -1,0 +1,27 @@
+body {
+  padding-top: 15em;
+  background: #FFFFFF url("../image/login-top.png") repeat-x;
+}
+
+#loginLogo{
+	margin-top: .6em;
+	height: 190px;
+	background: url("../image/login-logo.png") no-repeat right;
+}
+.form-signin {
+  padding: 15px;
+}
+.form-signin .input-lg, 
+.form-signin .btn-lg{
+	height: 45px;
+	width: 290px;
+	padding: 8px 16px;
+	border-radius: 2px;
+}
+.form-signin .input-lg{
+	color: #777;
+}
+.form-signin .btn-danger{
+	background-color: #127c6d;
+	border-color: #127c6d;
+}

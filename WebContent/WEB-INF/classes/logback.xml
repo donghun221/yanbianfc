@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds" debug="false">
+	<property name="LOG_HOME" value="/DATA/log/Admin" />
+
+	<!-- 控制台输出 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">   
+			<level>DEBUG</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>ACCEPT</onMismatch>
+		</filter>
+		<Encoding>UTF-8</Encoding>
+		<encoder>
+			<!-- <charset>UTF-8</charset> -->
+			<pattern>[-] %d{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread] AT %logger{100} [%file : %line]%n                         >> %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 按照每天一个目录，每小时一个文件生成日志（本土风格） -->
+	<appender name="ROLLING-STYLE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">   
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<Encoding>UTF-8</Encoding>
+		<file>${LOG_HOME}/runtime.txt</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_HOME}/record/%d{yyyy-MM-dd}/%d{HH}_%i.log
+			</fileNamePattern>
+			<maxHistory>10</maxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<charset>UTF-8</charset>
+			<pattern>[-] %d{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread] AT %logger{100} [%file : %line]%n                         >> %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 按照每天一个目录，每小时一个文件生成日志（SQL） -->
+	<appender name="SQL-ROLLING-STYLE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">   
+			<level>DEBUG</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<Encoding>UTF-8</Encoding>
+		<file>${LOG_HOME}/sql.txt</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_HOME}/sql/%d{yyyy-MM-dd}/%d{HH}_%i.log
+			</fileNamePattern>
+			<maxHistory>10</maxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<charset>UTF-8</charset>
+			<pattern>[-] %d{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread] AT %logger{100} [%file : %line]%n                         >> %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<root level="DEBUG">
+		<appender-ref ref="STDOUT" />
+	</root>
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+	</root>
+	<root level="DEBUG">
+		<appender-ref ref="STDOUT" />
+	</root>
+	<logger name="com.peernet.mobile.server">
+		<level value="INFO" />
+	</logger>
+	<logger name="me.ageek">
+		<level value="DEBUG" />
+	</logger>
+	<logger name="java.sql.PreparedStatement">
+		<level value="DEBUG" />
+	</logger>
+	<logger name="org.mybatis">
+		<level value="ERROR" />
+	</logger>
+	<logger name="org.apache">
+		<level value="ERROR" />
+	</logger>
+</configuration>

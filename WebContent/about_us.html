@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title></title>
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<script src="js/jquery.js" language="javascript" type="text/javascript"></script>
+	<script language="javascript" type="text/javascript" src="js/ss.js"></script>
+	<script language="javascript" type="text/javascript" src="js/juicer-min.js"></script>
+	<script language="javascript" type="text/javascript" src="js/Site.js"></script>
+	<script language="javascript" type="text/javascript" src="js/aboutUs.js"></script>
+</head>
+<body>
+	<div class="header">
+		<div class="headDiv">
+            <a href="index.html"><img class="logo" src="images/logo.jpg"/></a>
+			<ul class="menu">
+				<script type="text/javascript">
+					document.write(CF._menuHTML);
+				</script>
+			</ul>
+		</div>
+	</div>
+    <div class="aboutCenter">
+        <div class="aboutTitleDiv">
+            <div class="aboutTitle">
+                <script id="tpl_headText" type="text/template">
+				<h1>${headText}</h1>
+                <p>${subText}</p>
+				</script>
+            </div>
+        </div>
+        <div class="aboutContent">
+            <div class="aboutContentLeft">
+                <p><span>关于我们</span><br/>About Us</p>
+				<ul class="aboutMenu">
+					<script id="tpl_articleName" type="text/template">
+						{@each data as art,index}
+							<li><a id="${art.id}" index="${index}" {@if index==0}class="isClick"{@/if}>${art.articleName}</a></li>
+						{@/each}
+					</script>
+				
+					<!-- <li><a id="a1" class="isClick" onclick="a1Click()">公司概况</a></li>
+					<li><a id="a2" onclick="a2Click()">企业文化</a></li>
+					<li><a id="a3" onclick="a3Click()">总裁致辞</a></li> -->
+				</ul>
+            </div>
+			<div class="aboutContentRight">
+				
+				<script id="tpl_articleContent" type="text/template">
+						{@each data as art,index}
+							<div class="aContent" id="aContentDiv${index}" style="display:{@if index==0}block{@else}none{@/if}">
+								<h1>${art.articleName}</h1>
+								<br/>$${art.contentText}
+							</div>
+						{@/each}
+				</script>
+				
+				<!-- <div class="aContent1">
+					<h1>公司概况</h1>
+					<img src="images/about_1.jpg"/>
+					<p>公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况公司概况</p>
+				</div>
+				<div class="aContent2">
+					<h1>企业文化</h1>
+					<img src="images/about_1.jpg"/>
+					<p>企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化企业文化</p>
+				</div>
+				<div class="aContent3">
+					<h1>总裁致辞</h1>
+					<img src="images/about_1.jpg"/>
+					<p>总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞总裁致辞</p>
+				</div> -->
+			</div>
+        </div>
+		<img class="aboutBgBottom" src="images/about_bg_bottom.jpg" />
+    </div>
+
+	<script id="tpl_footer" type="text/template">
+		<div class="footer">
+			<div class="footDiv">
+				<p>$${copyrightText}<br/>${addressText}</p>
+				<a href="index.html"><img src="images/logo_small.jpg"></a>
+			</div>
+		</div>
+	</script>
+</body>
+</html>

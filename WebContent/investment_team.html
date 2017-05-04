@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title></title>
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+    <script src="js/jquery.js" language="javascript" type="text/javascript"></script>
+	<script language="javascript" type="text/javascript" src="js/ss.js"></script>
+	<script language="javascript" type="text/javascript" src="js/juicer-min.js"></script>
+	<script language="javascript" type="text/javascript" src="js/Site.js"></script>
+	<script language="javascript" type="text/javascript" src="js/investmentTeam.js"></script>
+	<style type="text/css">
+		.bigGuy{
+			width:200px;
+			height:200px;
+			border-radius: 50%;
+		}
+		
+		.leader{
+			width:160px;
+			height:160px;
+			border-radius: 50%;
+		}
+	</style>
+</head>
+<body>
+	<div class="header">
+		<div class="headDiv">
+			<a href="index.html"><img class="logo" src="images/logo.jpg"/></a>
+			<ul class="menu">
+				<script type="text/javascript">
+					document.write(CF._menuHTML);
+				</script>
+			</ul>
+		</div>
+	</div>
+    <div class="teamCenter">
+        <div class="teamTitleDiv">
+	        <div class="teamTitle">
+		        <script id="tpl_headText" type="text/template">
+				<h1>${headText}</h1>
+                <p>${subText}</p>
+				</script>
+	        </div>
+        </div>
+	    <div class="teamContent">
+		    <div class="teamContentLeft">
+			    <p><span>投资团队</span><br/>Investment Team</p>
+		        <ul class="teamMenu">
+                    <li><a id="t1" class="isClick" onclick="t1Click()">创始合伙人</a></li>
+                    <li><a id="t2" onclick="t2Click()">管理团队</a></li>
+                    <li><a id="t3" onclick="t3Click()">员工风采</a></li>
+                </ul>
+            </div>
+            <div class="teamContentRight">
+                <div class="tContent1">
+                    <h1>创始合伙人</h1>
+                    <div class="teamContentList1" style="margin-left: 0px;">
+                    	<img src="images/teamleader.jpg"/>
+                    	<script id="tpl_empBigGuy" type="text/template">
+						{@each data as emp,index}
+							<div class="tclDiv1">
+                            	<p class="tImg1"><img class="bigGuy" src="${emp.empImage|imgFormater}"></p>
+                            	<p class="tName1">${emp.empName}</p>
+                            	<p class="tPost1">${emp.empTitle}</p>
+                            	<p class="tProfiles1">${emp.contentText}</p>
+                        	</div>
+						{@/each}
+						</script>
+                        
+                    </div>
+                </div>
+                <div class="tContent2">
+                    <h1>管理团队</h1>
+                    <div class="teamContentList2">
+                    <img src="images/bigguy.jpg"/>
+                    	<script id="tpl_empLeader" type="text/template">
+                    		{@each data as emp,index}
+                    			<div class="tclDiv2">
+                            		<p class="tImg2"><img class="leader" src="${emp.empImage|imgFormater}"></p>
+                            		<p class="tName2">${emp.empName}</p>
+                            		<p class="tPost2">${emp.empTitle}</p>
+                       		 	</div>
+                    		{@/each}
+						</script>
+                    	
+                    </div>
+                </div>
+                <div class="tContent3">
+                    <h1>员工风采</h1>
+                    <div class="teamContentList3" id="teamContentList3_1">
+                        
+                    </div>
+                    <div class="teamPageControl">
+                        <a class="teamPageLeft" id="prePageBtn"><img src="images/t_arrow_enable_left.png"/>上一页</a>
+                        <a class="teamPageRight" id="nextPageBtn">下一页<img src="images/t_arrow_enable.png"/></a>
+                    </div>
+                </div>
+            </div>
+	    </div>
+        <img class="teamBgBottom" src="images/team_bg_bottom.jpg" />
+    </div>
+	<script id="tpl_footer" type="text/template">
+		<div class="footer">
+			<div class="footDiv">
+				<p>$${copyrightText}<br/>${addressText}</p>
+				<a href="index.html"><img src="images/logo_small.jpg"></a>
+			</div>
+		</div>
+	</script>
+	
+	<script id="tpl_empEmp" type="text/template">
+		{@each data as emp,index}
+			<div class="tclDiv3">
+				<p class="tImg3"><img style="width:200px;height:140px;" src="${emp.empImage|imgFormater}"></p>
+			</div>
+		{@/each}
+	</script>
+	
+	<script type="text/javascript" >
+        function t1Click() {
+            var lis=$(".teamMenu li a");
+            lis[0].className='isClick';
+            lis[1].className='';
+            lis[2].className='';
+            $(".tContent1").css('display','block');
+            $(".tContent2").css('display','none');
+            $(".tContent3").css('display','none');
+        }
+        function t2Click() {
+            var lis=$(".teamMenu li a");
+            lis[0].className='';
+            lis[1].className='isClick';
+            lis[2].className='';
+            $(".tContent1").css('display','none');
+            $(".tContent2").css('display','block');
+            $(".tContent3").css('display','none');
+        }
+        function t3Click() {
+            var lis=$(".teamMenu li a");
+            lis[0].className='';
+            lis[1].className='';
+            lis[2].className='isClick';
+            $(".tContent1").css('display','none');
+            $(".tContent2").css('display','none');
+            $(".tContent3").css('display','block');
+        }
+    </script>
+</body>
+</html>
